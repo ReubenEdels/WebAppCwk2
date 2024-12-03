@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container mt-5">
+      {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
+
+
+<div class="container mt-4">
+    <form action="" method="post" name="new">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.game.label("Game Title") }}
+            {{ form.game(class='form-control') }}
+        </div>
+        <div class="form-group">
+            {{ form.rating.label("Rating") }}
+            <div class="d-flex">
+              {% for subfield in form.rating %}
+                  <div class="form-check mr-3">
+                      {{ subfield(class="form-check-input") }}
+                      {{ subfield.label(class="form-check-label") }}
+                  </div>
+              {% endfor %}
+          </div>
+        </div>
+        <div class="form-group">
+            {{ form.review.label("Review") }}
+            {{ form.review(class='form-control', cols=30, rows=3)}}
+        </div>
+        <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container mt-5">
+      {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
+
+    <h1 class="text-center">Reviews for: {{ game_name }}</h1>
+    {% if reviews | length == 0 %}
+        <h3 class="text-center text-muted">No reviews yet,  <a href="{{ url_for('create_review') }}">add a review</a></h2>
+    {% else %}
+    <h3 class="text-center text-muted"><a href="{{ url_for('create_review') }}">Add a review</a></h3>
+      {% for review in reviews %}
+      <div class="review-box">
+          <h2>{{ review.rating }}/10</h2>
+          <h3>by: {{ review.user.username }}</h3>
+          <p>{{ review.review }}</p>
+          <button class="like-button btn btn-primary"id="like-button-{{ review.id }}" data-review-id="{{ review.id }}">
+              {% if user in review.likes %}
+            Unlike
+              {% else %}
+            Like
+              {% endif %}
+          </button>
+          <p id="likes-{{ review.id }}">
+              {% if review.likes | length == 0 %}
+                  No likes yet.
+              {% elif review.likes | length == 1 %}
+                  Liked by {{ review.likes[0].username }}
+              {% elif review.likes | length == 2 %}
+                  Liked by {{ review.likes[0].username }} & {{ review.likes[1].username }}
+              {% else %}
+                  Liked by {{ review.likes[0].username }}, {{ review.likes[1].username }} & {{ review.likes | length - 2 }} more
+              {% endif %}
+          </p>
+      </div>
+      {% endfor %}
+    {% endif %}
+{% endblock %}

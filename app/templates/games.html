@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container mt-5">
+      {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
+
+
+    {% for game in games %}
+    <div class="game-box">
+        <h1>{{ game.name }}</h1>
+        <h2>{{ game.genre }}</h2>
+        <p>{{ game.description }}</p>
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('reviews', game_id=game.id) }}">Reviews</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Log in to see reviews</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

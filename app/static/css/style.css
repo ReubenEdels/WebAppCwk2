@@ -1,0 +1,52 @@
+.review-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.review-buttons form{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.game-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+.heading-text {
+    padding-left: 10px;
+}
+
+.entry-form {
+    padding-left: 20px;
+}
+
+.current-list h5{
+    padding-left: 20px;
+}
+
+.complete-list h5{
+    padding-left: 20px;
+}
+
+
+.label-box {
+    background-color: #f8f9fa; 
+    border: 1px solid #ced4da; 
+    border-radius: 4px; 
+    padding: 6px 12px; 
+    margin-bottom: 8px; 
+}
+
+#home-navbar {
+    background-color: #e0e0e0;
+}
+
+#logout-navbar {
+    background-color: #e0e0e0;
+}
